@@ -1,4 +1,3 @@
-参考 URL と画像を追加した README.md です！
 
 ````markdown
 # 🤖 Telegram to Discord Bot
