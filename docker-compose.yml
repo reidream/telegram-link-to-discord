@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   tg_to_dc_bot:
+    user: "${UID}:${GID}"
     build: .
     container_name: tg-to-dc-bot
     restart: always

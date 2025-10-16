@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 import discord
 from discord.ext import commands, tasks
 from typing import List, Dict
-
+from datetime import timezone, timedelta
+JST = timezone(timedelta(hours=9)) 
 # ========================================
 # ログ設定
 # ========================================
@@ -85,7 +86,8 @@ class TelegramToDiscord:
         for msg in results:
             try:
                 # ========== 日時フォーマット ==========
-                date_str = msg['date'].strftime('%m-%d %H:%M')
+                date_local = msg['date'].astimezone(JST)
+                date_str = date_local.strftime("%m-%d %H:%M")
                 
                 # ========== チャンネル取得 ==========
                 channel = self.bot.get_channel(self.CHANNEL_ID)
@@ -99,7 +101,7 @@ class TelegramToDiscord:
                 if msg.get('context_before'):
                     context_msg = "```\n📜 前の会話:\n"
                     for ctx in msg['context_before']:
-                        ctx_date = ctx['date'].strftime('%H:%M')
+                        ctx_date = ctx['date'].astimezone(JST).strftime('%H:%M')
                         context_msg += f"[{ctx_date}] {ctx['sender_name']}: {ctx['text'][:100]}\n"
                     context_msg += "```"
                     await channel.send(context_msg)
@@ -124,7 +126,7 @@ class TelegramToDiscord:
                 if msg.get('context_after'):
                     context_msg = "```\n📝 後の会話:\n"
                     for ctx in msg['context_after']:
-                        ctx_date = ctx['date'].strftime('%H:%M')
+                        ctx_date = ctx['date'].astimezone(JST).strftime('%H:%M')
                         context_msg += f"[{ctx_date}] {ctx['sender_name']}: {ctx['text'][:100]}\n"
                     context_msg += "```"
                     await channel.send(context_msg)

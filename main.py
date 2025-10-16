@@ -33,7 +33,7 @@ else:
     # ローカル環境：フォルダを確実に作る
     Path("sessions").mkdir(parents=True, exist_ok=True)
     session = "sessions/let1008_session"
-target = os.getenv("target2")
+target =int(os.getenv("TELEGRAM_TARGET_1"))
 limit = int(os.getenv("TG_LIMIT", "200"))
 
 # ========================================
