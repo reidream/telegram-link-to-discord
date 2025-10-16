@@ -1,0 +1,24 @@
+name: linkbot
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip>=24.0
+  - setuptools
+  - wheel
+  - ca-certificates
+  - openssl
+  - tzdata
+  - pip:
+      - telethon==1.36.0
+      - aiohttp==3.9.5
+      - python-dotenv==1.0.1
+      # ↓ 判定精度を上げたい場合に使えるオプション
+      - emoji==2.12.1
+      - regex==2024.9.11
+      # ↓ Discord Bot を動かす場合に必須
+      - discord.py==2.4.0
+           # --- Hyperliquid SDK ---
+      # Info / constants を使うための公式SDK
+      - hyperliquid-python-sdk

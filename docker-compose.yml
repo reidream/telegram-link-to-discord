@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  tg_to_dc_bot:
+    build: .
+    container_name: tg-to-dc-bot
+    restart: always
+
+    # .env を“起動時に”環境変数として渡す
+    env_file: .env
+
+    # アプリの作業ディレクトリ
+    working_dir: /app
+
+    # セッションを（マウント）”
+    volumes:
+      - ./sessions:/app/sessions
+
+    # （任意）ログを溜めすぎない
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '3'
