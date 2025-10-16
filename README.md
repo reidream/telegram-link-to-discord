@@ -269,19 +269,7 @@ telegram-_chat_to_discord/
 
 ---
 
----
 
-## 📁 ファイル構成
-
-```
-crypto_info_bot/
-├── main.py           # メイン制御
-├── tl_fetcher.py     # Telegram取得・URL抽出
-├── discord_bot.py    # Discord投稿
-├── environment.yml   # 環境設定
-├── .env              # 認証情報
-└── .gitignore        # Git除外設定
-```
 
 ---
 
